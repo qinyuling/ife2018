@@ -1,4 +1,5 @@
 import {Component} from 'san';
+import './style.css';
 
 class HelloComponent extends Component {
 
@@ -9,7 +10,7 @@ class HelloComponent extends Component {
     static template = '<div>Hello, <span class="hello">{{name}}</span></div>';
 
     initData() {
-      return {name: 'San !!'}
+      return {name: 'San !!!'}
     }
 
 }
