@@ -3,9 +3,9 @@ const webpack = require('webpack');
 
 const config = require('./build/webpack.config.dev.js');
 const options = {
-  contentBase: './dist',
+  contentBase: path.join(__dirname, "dist"),
   hot: true,
-  host: 'localhost'
+  compress: 3000
 };
 
 webpackDevServer.addDevServerEntrypoints(config, options);

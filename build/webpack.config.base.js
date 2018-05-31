@@ -4,7 +4,8 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	entry: {
-		app: './src/index.js'
+		//app: './src/index.js' 相对于执行webpack的路径
+		app: path.resolve(__dirname, '../src/index.js')
 	},
 	module: {
 		rules: [{
@@ -13,7 +14,7 @@ module.exports = {
 		},{
 			test: /\.js$/,
 			use: 'babel-loader',
-			include: path.resolve(__dirname, '../'),
+			include: path.resolve(__dirname, '../src/'),
 			exclude: /node_modules/
 		}
 		]
@@ -21,11 +22,9 @@ module.exports = {
 	plugins: [
 		new cleanWebpackPlugin(['dist']),
 		new htmlWebpackPlugin({
-			title: '首页'
+			filename: path.resolve(__dirname, '../dist/index.html'),
+			template: path.resolve(__dirname, '../src/index.html'),
+			inject: true
 		})
-	],
-	output: {
-		filename: '[name].bundle.js',
-		path: path.resolve(__dirname, '../dist')
-	}
+	]
 };

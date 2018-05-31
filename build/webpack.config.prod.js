@@ -1,3 +1,4 @@
+const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const uglifyJSPlugin = require('uglifyjs-webpack-plugin');
@@ -12,5 +13,9 @@ module.exports = merge(base, {
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify('production')
 		})
-	]
+	],
+	output: {
+		filename: '[name].bundle.js?v=[hash:5]',
+		path: path.resolve(__dirname, '../dist/assets/js')
+	}
 });

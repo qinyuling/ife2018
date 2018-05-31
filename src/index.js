@@ -1,36 +1,17 @@
-  import _ from 'lodash';
-  import Printer from './print.js';
-  import './style.css'
+import {Component} from 'san';
 
+class HelloComponent extends Component {
 
+  constructor(options) {
+        super(options);
+    }
 
-  function component() {
-  	var element = document.createElement('div');
-  	var btn = document.createElement('button');
+    static template = '<div>Hello, <span class="hello">{{name}}</span></div>';
 
-  	element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    initData() {
+      return {name: 'San !!'}
+    }
 
-  	btn.innerHTML = 'Click me then check the console!';
+}
 
-  	let printer = new Printer('samsung');
-  	btn.onclick = function(){
-  		printer.print('look');
-  	};
-
-  	element.appendChild(btn);
-
-  	return element;
-  }
-
-  let element = component(); // Store the element to re-render on print.js changes
-  document.body.appendChild(element);
-
-  if (module.hot) {
-  	module.hot.accept('./print.js', function() {
-  		console.log('Accepting the updated printMe module!');
-  		document.body.removeChild(element);
-  		element = component(); // Re-render the "component" to update the click handler
-  		document.body.appendChild(element);
-  	})
-  }
-
+new HelloComponent().attach(document.body);
