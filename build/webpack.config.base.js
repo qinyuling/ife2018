@@ -11,13 +11,16 @@ module.exports = {
 		rules: [{
 			test: /\.css$/,
 			use: ['style-loader', 'css-loader']
-		},{
+		}, {
 			test: /\.js$/,
 			use: 'babel-loader',
 			include: path.resolve(__dirname, '../src/'),
 			exclude: /node_modules/
-		}
-		]
+		}, {
+			test: /\.san$/,
+			loader: 'san-loader',
+			include: path.resolve(__dirname, '../src/')
+		}]
 	},
 	plugins: [
 		new cleanWebpackPlugin(['dist']),
@@ -26,5 +29,13 @@ module.exports = {
 			template: path.resolve(__dirname, '../src/index.html'),
 			inject: true
 		})
-	]
+	],
+	resolve: {
+		//告诉 webpack 解析模块时应该搜索的目录
+		extensions: [".js", ".json", ".san"],
+		alias: {
+			san: process.env.NODE_ENV === 'production' ?
+				'san/dist/san.js' : 'san/dist/san.dev.js'
+		}
+	}
 };
