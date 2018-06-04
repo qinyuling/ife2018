@@ -1,8 +1,67 @@
-body {
-	background-color: #eee;
-	font-size: 16px;
+@charset "UTF-8";
+html {
+    font-size: 20px
 }
 
-.hello {
-	color: #f89c33;
+@media only screen and (min-width: 400px) {
+    html {
+        font-size: 21.33px !important
+    }
+}
+
+@media only screen and (min-width: 414px) {
+    html {
+        font-size: 22.08px !important
+    }
+}
+
+@media only screen and (min-width: 480px) {
+    html {
+        font-size: 25.6px !important
+    }
+}
+
+* {
+	-webkit-box-sizing: boerder-box;
+			box-sizing: border-box;
+}
+
+body {
+	font-size: .8rem;
+	background-color: #eee;
+}
+
+@media only screen and (min-width: 480px) {
+    body {
+        width: 480px;
+        margin: 20px auto;
+    }
+}
+
+.flex {
+	display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.flex-1 {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1
+}
+
+.input {
+	-webkit-appearance: none;
+	outline: 0;
+	padding: .3rem;
+	border: 1px solid #eaeaea;
+	font-size: .6rem;
+}
+
+.input:focus {
+	border: 1px solid #f89c33;
 }
