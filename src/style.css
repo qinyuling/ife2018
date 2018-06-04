@@ -22,6 +22,8 @@ html {
 }
 
 * {
+    margin: 0;
+    padding: 0;
 	-webkit-box-sizing: boerder-box;
 			box-sizing: border-box;
 }

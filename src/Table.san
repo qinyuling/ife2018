@@ -1,0 +1,109 @@
+<template>
+	<div class="table">
+		<div class='button-full' on-click='addRow'>新增</div>
+		<div class="tr">
+	  		<div class="th">姓名</div>
+	  		<div class="th">分数</div>
+	  		<div class="th">审核状态</div>
+	  		<div class="th">操作</div>
+  		</div>
+		<div s-for="row, index in rows" class="tr">
+	  		<div class="td">{{row.name}}</div>
+	  		<div class="td">{{row.score}}</div>
+	  		<div class="td">
+	  			<span s-if='row.review == 0'>未审核</span>
+	  			<span s-else>{{row.score >= 60 ? '合格' : '不合格'}}</span>
+	  		</div>
+	  		<div class="td">
+	  			<button s-if='row.review == 0' on-click='review(index)'>审核</button>
+	  			<button s-else on-click='delete(index)'>删除</button>
+	  		</div>
+  		</div>
+	</div>
+</template>
+
+<script>
+	export default {
+	  initData() {
+	    return {
+	      rows: [{
+	      	name: '张三',
+	      	score: 80,
+	      	review: '0'
+	      },{
+	      	name: '李四',
+	      	score: 50,
+	      	review: '0'
+	      },{
+	      	name: '王五',
+	      	score: 70,
+	      	review: '1'
+	      },{
+	      	name: '赵六',
+	      	score: 55,
+	      	review: '1'
+	      }]
+	    };
+	  },
+	  review: function(index) {
+	    let row = this.data.get('rows', index);
+	  	this.data.set('rows.' + index + '.review', '1' );
+	  },
+	  delete: function(index) {
+	  	this.data.removeAt('rows', index);
+	  },
+	  addRow: function(){
+	  	let row = {
+	  		name: '匿名',
+	  		score: Math.floor(Math.random()*(70-50+1)+50),
+	  		review: Math.random() > 0.5 ? '0' : '1'
+	  	}
+	  	this.data.push('rows', row);
+	  }
+    }
+
+
+</script>
+
+<style>
+
+.button-full {
+	margin-top: 1rem;
+	height: 2.16rem;
+	line-height: 2.16rem;
+	text-align: center;
+	font-size: .85rem;
+	background-color: #fff;
+	border: 1px solid currentColor;
+}
+
+.table {
+	margin: 0 1rem;
+	text-align: center;
+	font-size: .6rem;
+}
+
+.tr {
+	color: #888;
+	display: flex;
+	margin-top: .5rem;
+}
+
+.tr .td,
+.tr .th {
+	flex: 1;
+}
+
+.th {
+	color: #333;
+	font-weight: 700;
+	font-size: .7rem;
+}
+
+.td button {
+	padding: 0 .3rem;
+}
+
+</style>
+
+

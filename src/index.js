@@ -1,5 +1,5 @@
 import './style.css';
-import dataForm from './Form';
+import Table from './Table';
 
 
-new dataForm().attach(document.body);
+new Table().attach(document.body);
