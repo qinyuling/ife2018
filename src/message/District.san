@@ -22,10 +22,9 @@
 		},
 		inited() {
 			console.log("child inited");
-			//this.data.set('msg', '');
 		},
 		created() {
-			//this.data.set('msg', '');
+			this.data.set('msg', '');
 			console.log("child created");
 		},
 		attached() {
