@@ -1,5 +1,5 @@
 import './style.css';
-import Table from './Table';
+import Province from './message/Province';
 
 
-new Table().attach(document.body);
+new Province().attach(document.body);

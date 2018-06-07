@@ -1,0 +1,59 @@
+<template>
+	<div class='district flex'>
+		<span>子组件编辑消息：</span>
+		<input class='input flex-1' type='text' value='{= msg =}' placeholder='输入要发送的消息' />
+		<button type='button' on-click='sendMessage($event)'>发送</button>
+	</div>
+</template>
+
+<script>
+
+	export default {
+
+		initData() {
+			console.log("init children's data");
+			return {
+				msg: ''
+			}
+		},
+
+		compiled() {
+			console.log("child compiled");
+		},
+		inited() {
+			console.log("child inited");
+			//this.data.set('msg', '');
+		},
+		created() {
+			//this.data.set('msg', '');
+			console.log("child created");
+		},
+		attached() {
+			console.log("child has been attached to body");
+		},
+		detached() {
+			console.log("child has been detached from body");
+		},
+		disposed() {
+			console.log("child has been disposed");
+		},
+
+		sendMessage(event){
+			console.log(event.currentTarget);
+			let msg = this.data.get('msg');
+			this.fire('btnclick', msg); //派发一个自定义事件，通知父组件
+			this.dispatch('district-sent', msg); //派发一个消息，通知更高级的父组件
+		}
+
+	}
+
+</script>
+
+<style>
+
+button {
+	padding: 0 .6rem;
+	cursor: pointer;
+}
+
+</style>

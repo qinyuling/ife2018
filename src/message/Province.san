@@ -1,0 +1,63 @@
+<template>
+	<div class='province'>
+		<ui-city></ui-city>
+		<div class='flex'>
+			<span>高层父组件收到的消息：</span>
+			<input class='input flex-1' value='{= msgToProvince =}'/>
+		</div>
+	</div>
+</template>
+
+<script>
+	import City from './City.san';
+
+	export default {
+
+		components: {
+			'ui-city': City
+		},
+
+		initData() {
+			console.log("init grandparent's data");
+			return {
+				msgToProvince: '我也静静的等待用户输入'
+			};
+		},
+
+		compiled() {
+			console.log("grandparent compiled");
+		},
+		inited() {
+			console.log("grandparent inited");
+		},
+		created() {
+			console.log("grandparent created");
+		},
+		attached() {
+			console.log("grandparent has been attached to body");
+		},
+		detached() {
+			console.log("grandparent has been detached from body");
+		},
+		disposed() {
+			console.log("grandparent has been disposed");
+		},
+
+		messages: {
+			'district-sent': function(arg) {
+				this.data.set('msgToProvince', arg.value);
+			}
+		}
+
+
+	}
+
+</script>
+
+<style>
+.province {
+	padding: 1rem;
+	line-height: 2.5;
+	font-size: .6rem;
+}
+</style>
